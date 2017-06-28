@@ -1,0 +1,21 @@
+storage:
+  filesystems:
+    - # Define the OEM partition
+      name: oem
+      mount:
+        device: /dev/disk/by-partlabel/OEM
+        format: ext4
+  files:
+    - # Set auto-login in oem
+      filesystem: oem
+      path: /grub.cfg
+      mode: 384 # 600
+      contents:
+        inline: |
+          set linux_append="$linux_append coreos.config.url=oem:///coreos-install.json coreos.autologin"
+    - # Set the hostname for the machine
+      filesystem: root
+      path: /etc/hostname
+      mode: 420 # 664
+      contents:
+        inline: coreos-usb

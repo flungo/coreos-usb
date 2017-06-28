@@ -1,0 +1,6 @@
+# ignore any user inition scripts
+*.yml
+!ignition.yml
+
+# ignore all generated json files
+*.json
